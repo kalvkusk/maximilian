@@ -14,7 +14,7 @@ func maxim() {
 		if len(fpid) > 0 {
 			 robotgo.ActivePID(fpid[0])
 			 hwnd := robotgo.GetHWND()
-			 robotgo.MaxWindow()
+			 robotgo.MaxWindow(fpid[0])
 
 		}
 	}
