@@ -20,10 +20,7 @@ if *textPtr == "" {
 fpid, _:= robotgo.FindIds(*textPtr)
  fmt.Printf("%d ", fpid)
   if len(fpid) > 0 {
-		fmt.Printf("Activating")
-  	robotgo.ActivePID(fpid[0])
 		fmt.Printf("Maximizing")
-
   	robotgo.MaxWindow(fpid[0])
   } else {
 		fmt.Printf("%s process was not found!", *textPtr)
