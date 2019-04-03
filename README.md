@@ -1,0 +1,1 @@
+xgo -ldflags='-extldflags "-static"'
