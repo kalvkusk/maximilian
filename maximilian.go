@@ -1,24 +1,24 @@
 package main
 
 import (
-	"github.com/go-vgo/robotgo"
-  "fmt"
+    "log"
+    "strings"
+    "syscall"
 
+    "github.com/AllenDang/w32"
+    "github.com/hnakamur/w32syscall"
 )
 
-func maxim() {
-	// find the process id by the process name
-	fpid, err := robotgo.FindIds("Rainforest VM")
-	if err == nil {
-		fmt.Println("pids...", fpid)
-		if len(fpid) > 0 {
-			 robotgo.MaxWindow(fpid[0])
-
-		}
-	}
-}
-
-
 func main() {
-maxim()
+    err := w32syscall.EnumWindows(func(hwnd syscall.Handle, lparam uintptr) bool {
+        h := w32.HWND(hwnd)
+        text := w32.GetWindowText(h)
+        if strings.Contains(text, "Rainforest VM") {
+            w32.MoveWindow(h, 0, 0, 1440, 900, true)
+        }
+        return true
+    }, 0)
+    if err != nil {
+        log.Fatalln(err)
+    }
 }
